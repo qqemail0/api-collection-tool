@@ -53,6 +53,33 @@ button {
   padding: 8px 0 18px;
 }
 
+.masthead-actions {
+  display: grid;
+  justify-items: end;
+  gap: 10px;
+}
+
+.repo-orb {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(21, 21, 21, 0.78);
+  border-radius: 50%;
+  background:
+    linear-gradient(140deg, #151515 0%, #2d2924 62%, #007c79 100%);
+  color: #fffaf0;
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: 0 14px 34px rgba(21, 21, 21, 0.22);
+}
+
+.repo-orb:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 38px rgba(0, 124, 121, 0.24);
+}
+
 .kicker {
   margin: 0 0 5px;
   color: var(--teal);
@@ -443,28 +470,58 @@ pre {
 }
 
 .source-footer {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 16px;
   margin-top: 14px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 14px;
-  background: rgba(255, 250, 240, 0.86);
-  color: var(--muted);
+  padding: 16px;
+  background:
+    linear-gradient(135deg, rgba(0, 124, 121, 0.08), transparent 34%),
+    linear-gradient(315deg, rgba(183, 131, 24, 0.1), transparent 38%),
+    rgba(255, 250, 240, 0.92);
   box-shadow: var(--shadow);
 }
 
-.source-footer a {
+.source-footer-copy span {
+  display: block;
+  margin-bottom: 4px;
   color: var(--teal);
+  font-size: 12px;
   font-weight: 800;
+  text-transform: uppercase;
+}
+
+.source-footer-copy strong {
+  display: block;
+  font-family: Georgia, "Times New Roman", "Microsoft YaHei", serif;
+  font-size: 18px;
+}
+
+.source-footer-copy p {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.source-footer-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+  padding: 0 14px;
+  background: var(--ink);
+  color: #fffaf0;
+  font-weight: 900;
   text-decoration: none;
 }
 
-.source-footer a:hover {
-  text-decoration: underline;
+.source-footer-link:hover {
+  background: var(--teal);
+  border-color: var(--teal);
 }
 
 @media (max-width: 1180px) {
@@ -472,6 +529,10 @@ pre {
   .workspace,
   .masthead {
     grid-template-columns: 1fr;
+  }
+
+  .masthead-actions {
+    justify-items: start;
   }
 
   .category-list,
@@ -498,5 +559,13 @@ pre {
   .api-title-row {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .source-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .source-footer-link {
+    width: 100%;
   }
 }

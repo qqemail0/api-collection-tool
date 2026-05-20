@@ -41,6 +41,8 @@ const checks = [
   [app.includes("renderDetail"), "frontend must render API details"],
   [html.includes("API合集工具"), "HTML must include product name"],
   [html.includes("https://github.com/qqemail0/api-collection-tool"), "HTML must include open source repository link"],
+  [html.includes("repo-orb"), "HTML must include top-right circular repository link"],
+  [html.includes("source-footer-link"), "HTML must include styled footer repository button"],
   [css.includes("--teal") && css.includes("--red") && css.includes("--gold"), "CSS must use a varied palette"],
   [workflow.includes("actions/deploy-pages"), "workflow must deploy to GitHub Pages"],
   [workflow.includes("npm run build"), "workflow must rebuild API data before deploy"]
