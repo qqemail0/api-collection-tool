@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>API合集工具</title>
+  <meta name="description" content="按类型分类、搜索并查看公共 API 的用途、使用方法、认证方式、CORS、HTTPS 和请求示例。">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="masthead">
+      <div>
+        <p class="kicker">API Atlas</p>
+        <h1>API合集工具</h1>
+        <p class="subtitle">按类型筛选、全文搜索，并在详情里查看每个 API 的用途、使用方法和接入建议。</p>
+      </div>
+      <div class="source-card" aria-label="数据源状态">
+        <span>数据源</span>
+        <strong id="sourceLabel">加载中</strong>
+        <small id="generatedAt">等待数据</small>
+      </div>
+    </header>
+
+    <section class="control-deck" aria-label="搜索和筛选">
+      <label class="search-field">
+        <span>搜索 API</span>
+        <input id="searchInput" type="search" placeholder="输入名称、用途、分类、Auth 或关键词">
+      </label>
+      <div class="filter-row">
+        <button class="chip active" type="button" data-filter="auth" data-value="all">全部认证</button>
+        <button class="chip" type="button" data-filter="auth" data-value="No">免认证</button>
+        <button class="chip" type="button" data-filter="https" data-value="Yes">HTTPS</button>
+        <button class="chip" type="button" data-filter="cors" data-value="Yes">浏览器可调</button>
+      </div>
+      <div class="stats" aria-label="统计">
+        <div><span>API</span><strong id="apiTotal">0</strong></div>
+        <div><span>分类</span><strong id="categoryTotal">0</strong></div>
+        <div><span>免认证</span><strong id="noAuthTotal">0</strong></div>
+        <div><span>前端友好</span><strong id="browserReadyTotal">0</strong></div>
+      </div>
+    </section>
+
+    <main class="workspace">
+      <aside class="category-pane" aria-label="API分类">
+        <div class="pane-head">
+          <h2>类型分类</h2>
+          <button id="clearCategory" type="button">全部</button>
+        </div>
+        <div id="categoryList" class="category-list"></div>
+      </aside>
+
+      <section class="results-pane" aria-label="API列表">
+        <div class="pane-head">
+          <h2>API列表</h2>
+          <span id="resultCount">0 个结果</span>
+        </div>
+        <div id="apiList" class="api-list"></div>
+      </section>
+
+      <section class="detail-pane" aria-label="API详情">
+        <div id="apiDetail" class="detail-inner">
+          <div class="empty-detail">
+            <h2>选择一个 API</h2>
+            <p>左侧列表会显示所有匹配结果。点击任意 API 后，这里会展示用途、使用方法、请求示例和接入注意事项。</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <template id="categoryTemplate">
+    <button class="category-item" type="button">
+      <span>
+        <strong class="category-name"></strong>
+        <small class="category-desc"></small>
+      </span>
+      <em class="category-count"></em>
+    </button>
+  </template>
+
+  <template id="apiTemplate">
+    <button class="api-item" type="button">
+      <span class="api-title-row">
+        <strong class="api-name"></strong>
+        <span class="api-category"></span>
+      </span>
+      <span class="api-description"></span>
+      <span class="api-badges"></span>
+    </button>
+  </template>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

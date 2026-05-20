@@ -1,0 +1,6 @@
+node_modules/
+*.log
+.DS_Store
+public-apis-readme.md
+public-api-lists-readme.md
+apis-json.txt

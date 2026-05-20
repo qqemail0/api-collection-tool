@@ -1,0 +1,52 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+
+async function read(file) {
+  return fs.readFile(path.join(root, file), "utf8");
+}
+
+const required = [
+  "package.json",
+  ".github/workflows/deploy-pages.yml",
+  "scripts/build-data.mjs",
+  "public/index.html",
+  "public/.nojekyll",
+  "public/assets/app.js",
+  "public/assets/styles.css",
+  "public/data/apis.json"
+];
+
+for (const file of required) {
+  await fs.access(path.join(root, file));
+}
+
+const data = JSON.parse(await read("public/data/apis.json"));
+const app = await read("public/assets/app.js");
+const html = await read("public/index.html");
+const css = await read("public/assets/styles.css");
+const workflow = await read(".github/workflows/deploy-pages.yml");
+
+const sample = data.apis[0];
+const checks = [
+  [data.totals.apis > 1000, "expected more than 1000 APIs"],
+  [data.totals.categories > 40, "expected more than 40 categories"],
+  [sample.purpose && sample.purpose.includes("用于"), "API detail must include purpose"],
+  [Array.isArray(sample.usage) && sample.usage.length >= 5, "API detail must include usage steps"],
+  [sample.sampleRequest && sample.sampleRequest.includes("curl"), "API detail must include request sample"],
+  [app.includes("filteredApis"), "frontend must implement search/filter"],
+  [app.includes("renderCategories"), "frontend must render categories"],
+  [app.includes("renderDetail"), "frontend must render API details"],
+  [html.includes("API合集工具"), "HTML must include product name"],
+  [css.includes("--teal") && css.includes("--red") && css.includes("--gold"), "CSS must use a varied palette"],
+  [workflow.includes("actions/deploy-pages"), "workflow must deploy to GitHub Pages"],
+  [workflow.includes("npm run build"), "workflow must rebuild API data before deploy"]
+];
+
+for (const [ok, message] of checks) {
+  if (!ok) throw new Error(message);
+}
+
+console.log(`OK: verified ${data.totals.apis} APIs across ${data.totals.categories} categories.`);

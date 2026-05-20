@@ -1,0 +1,22 @@
+{
+  "name": "api-collection-tool",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static API collection browser generated from the public-apis README format.",
+  "main": "scripts/build-data.mjs",
+  "scripts": {
+    "build": "node scripts/build-data.mjs",
+    "start": "python -m http.server 8092 -d public",
+    "test": "node tests/verify.mjs"
+  },
+  "keywords": [
+    "api",
+    "public-apis",
+    "directory",
+    "search"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  }
+}
