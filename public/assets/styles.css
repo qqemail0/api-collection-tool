@@ -442,6 +442,31 @@ pre {
   line-height: 1.7;
 }
 
+.source-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: rgba(255, 250, 240, 0.86);
+  color: var(--muted);
+  box-shadow: var(--shadow);
+}
+
+.source-footer a {
+  color: var(--teal);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.source-footer a:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 1180px) {
   .control-deck,
   .workspace,
