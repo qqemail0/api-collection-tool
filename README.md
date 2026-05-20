@@ -4,13 +4,14 @@
 
 ## 数据源
 
-优先读取：
+可选读取本地 `public-apis` README：
 
 ```text
-C:\Users\mo\Downloads\public-apis-master\public-apis-master\README.md
+set PUBLIC_APIS_README=path\to\public-apis\README.md
+npm run build
 ```
 
-如果本地参考项目没有 API 列表，会自动从官方 public-apis README 拉取数据并生成本地 JSON。
+如果没有设置本地 README，或本地参考项目没有 API 列表，会自动从官方 public-apis README 拉取数据并生成本地 JSON。
 
 ## 运行
 

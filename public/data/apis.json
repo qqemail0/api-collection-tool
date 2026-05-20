@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-05-20T11:52:55.732Z",
+  "generatedAt": "2026-05-20T12:20:13.490Z",
   "title": "API合集工具",
   "source": {
     "type": "official-remote-readme",
     "location": "https://raw.githubusercontent.com/public-apis/public-apis/master/README.md",
-    "referenceProject": "C:\\Users\\mo\\Downloads\\public-apis-master\\public-apis-master"
+    "referenceProject": "public-apis compatible README"
   },
   "totals": {
     "apis": 1482,

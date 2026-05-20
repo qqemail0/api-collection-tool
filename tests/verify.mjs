@@ -28,6 +28,19 @@ const app = await read("public/assets/app.js");
 const html = await read("public/index.html");
 const css = await read("public/assets/styles.css");
 const workflow = await read(".github/workflows/deploy-pages.yml");
+const readme = await read("README.md");
+const buildScript = await read("scripts/build-data.mjs");
+const serializedData = JSON.stringify(data);
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const privatePathMarkers = [
+  ["C:", "\\", "Users", "\\"].join(""),
+  ["M:", "\\"].join(""),
+  ["Users", "/", "mo"].join(""),
+  ["Users", "\\", "mo"].join(""),
+  ["test", "chatcpt"].join(""),
+  ["Downloads", "\\", "public-apis-master"].join("")
+].map(escapeRegExp);
+const privatePathPattern = new RegExp(privatePathMarkers.join("|"), "i");
 
 const sample = data.apis[0];
 const checks = [
@@ -43,6 +56,9 @@ const checks = [
   [html.includes("https://github.com/qqemail0/api-collection-tool"), "HTML must include open source repository link"],
   [html.includes("repo-orb"), "HTML must include top-right circular repository link"],
   [html.includes("source-footer-link"), "HTML must include styled footer repository button"],
+  [!privatePathPattern.test(readme), "README must not expose local host paths"],
+  [!privatePathPattern.test(buildScript), "build script must not expose local host paths"],
+  [!privatePathPattern.test(serializedData), "generated data must not expose local host paths"],
   [css.includes("--teal") && css.includes("--red") && css.includes("--gold"), "CSS must use a varied palette"],
   [workflow.includes("actions/deploy-pages"), "workflow must deploy to GitHub Pages"],
   [workflow.includes("npm run build"), "workflow must rebuild API data before deploy"]

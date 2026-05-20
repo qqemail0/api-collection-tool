@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const outputDir = path.join(root, "public", "data");
 const outputFile = path.join(outputDir, "apis.json");
-const defaultLocalReadme = "C:\\Users\\mo\\Downloads\\public-apis-master\\public-apis-master\\README.md";
+const defaultLocalReadme = path.join(root, "source", "public-apis", "README.md");
 const fallbackReadmeUrl = "https://raw.githubusercontent.com/public-apis/public-apis/master/README.md";
 
 const categoryMeta = {
@@ -273,7 +273,7 @@ async function main() {
     source: {
       type: source.type,
       location: source.location,
-      referenceProject: "C:\\Users\\mo\\Downloads\\public-apis-master\\public-apis-master"
+      referenceProject: "public-apis compatible README"
     },
     totals: {
       apis: apis.length,
