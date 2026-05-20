@@ -2,6 +2,10 @@
 
 一个静态 API 导航工具，参考 `public-apis` 的 README 表格格式生成数据，并为每个 API 增强用途、使用方法、请求示例、接入建议和注意事项。
 
+## 线上访问
+
+GitHub Pages: https://qqemail0.github.io/api-collection-tool/
+
 ## 数据源
 
 可选读取本地 `public-apis` README：

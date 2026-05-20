@@ -56,6 +56,7 @@ const checks = [
   [html.includes("https://github.com/qqemail0/api-collection-tool"), "HTML must include open source repository link"],
   [html.includes("repo-orb"), "HTML must include top-right circular repository link"],
   [html.includes("source-footer-link"), "HTML must include styled footer repository button"],
+  [readme.includes("https://qqemail0.github.io/api-collection-tool/"), "README must declare deployed GitHub Pages URL"],
   [!privatePathPattern.test(readme), "README must not expose local host paths"],
   [!privatePathPattern.test(buildScript), "build script must not expose local host paths"],
   [!privatePathPattern.test(serializedData), "generated data must not expose local host paths"],
